@@ -43,7 +43,6 @@ const Home = () => {
 
   const fetchMoreListItems = () => {
     getPosts();
-    console.log(page, lastPage);
     setIsFetching(false);
   };
 

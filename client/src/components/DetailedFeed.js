@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "../api/axios";
 import Loading from "./Loading";
+import useAuth from "../hooks/useAuth";
 
 const DetailedFeed = () => {
   const params = useParams();
@@ -9,6 +10,8 @@ const DetailedFeed = () => {
   const [post, setPost] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setError] = useState(false);
+
+  const { auth } = useAuth();
 
   const [firstLetter, setFirstLetter] = useState();
 
@@ -47,14 +50,25 @@ const DetailedFeed = () => {
             {post.title}
           </h1>
 
-          <div className={`flex`}>
+          <div
+            className={`flex border-b-1 pb-5 border-gray-700 flex-col md:flex-row md:justify-between gap-4 md:gap-0`}
+          >
             <div>
               <p className={`text-dark-gray`}>
                 written by @{post.username || post.user_id}
               </p>
               <p className={`text-dark-gray`}>on {post.createdAt}</p>
             </div>
+            <div>
+              <button
+                className={`text-black bg-primary md:text-lg text-sm pt-2 pb-2 pl-6 pr-6 rounded-sm active:bg-black active:text-primary flex gap-2 items-center justify-center`}
+              >
+                <i className={`material-symbols-rounded`}>favorite</i>
+                Like
+              </button>
+            </div>
           </div>
+
           <p className={`text-white break-words whitespace-pre-wrap`}>
             <span className={`text-4xl`}>{firstLetter}</span>
             {post.content.trim().slice(1)}

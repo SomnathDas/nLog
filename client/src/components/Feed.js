@@ -21,7 +21,7 @@ const Feed = ({
         <h2 className={`text-3xl font-bold text-center`}>{date_short}</h2>
         <div className={`flex gap-2`}>
           <i className={`material-symbols-rounded text-primary`}>favorite</i>
-          <h2>{likes}</h2>
+          <h2>{likes.length}</h2>
         </div>
       </div>
 
@@ -48,7 +48,7 @@ const Feed = ({
           <h2 className={` font-bold`}>{date_long}</h2>
           <div className={`flex gap-2`}>
             <i className={`material-symbols-rounded`}>favorite</i>
-            <h2>{likes}</h2>
+            <h2>{likes.length}</h2>
           </div>
         </div>
         <div className={` gap-2 flex flex-wrap pl-4 pr-4`}>
