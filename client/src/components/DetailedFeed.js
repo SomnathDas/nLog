@@ -13,6 +13,7 @@ const DetailedFeed = () => {
   const [firstLetter, setFirstLetter] = useState();
 
   const getPost = async () => {
+    setIsLoading(true);
     try {
       const response = await axios.get(`/api/posts/find/${postId}`);
       setPost(response.data.data[0]);
@@ -21,19 +22,13 @@ const DetailedFeed = () => {
       );
     } catch (err) {
       setError(true);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   useEffect(() => {
-    setIsLoading(true);
-
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, [300]);
-
     getPost();
-
-    return () => clearTimeout(timer);
   }, []);
 
   return (
