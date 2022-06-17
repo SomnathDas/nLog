@@ -1,0 +1,16 @@
+.cube {
+  height: 60px;
+  animation: 2s lightIn cubic-bezier(0.1, 0.7, 0.8, 0.1) infinite alternate;
+}
+
+@keyframes lightIn {
+  0% {
+    fill: #001219;
+  }
+  50% {
+    fill: #27def2;
+  }
+  100% {
+    fill: #001219;
+  }
+}

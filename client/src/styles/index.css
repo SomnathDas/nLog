@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100;200;300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global Direct Tags */
+html {
+  background-color: #001219;
+  scroll-behavior: smooth;
+}
+
+input {
+  font-family: "Lexend Deca", sans-serif;
+}
+
+input::placeholder {
+  font-family: "Lexend Deca", sans-serif;
+  letter-spacing: normal;
+}
+
+input[type="password"] {
+  letter-spacing: 0.25rem;
+}
+
+button {
+  font-family: "Lexend Deca", sans-serif;
+  font-weight: 500;
+}
+
+/* Disabling all general highlighting */
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
+
+h1 {
+  font-family: "Playfair Display", serif;
+}
+
+h2,
+h3,
+p {
+  font-family: "Lexend Deca", sans-serif;
+}

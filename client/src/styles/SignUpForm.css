@@ -1,0 +1,60 @@
+.side_bg {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)),
+    url("/public/blue_side.webp");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+h2 {
+  font-family: "Lexend Deca", sans-serif;
+}
+
+a {
+  font-family: "Lexend Deca", sans-serif;
+}
+
+.title {
+  font-family: "Playfair Display", serif;
+}
+
+.subtitle {
+  font-family: "Lexend Deca", sans-serif;
+  font-weight: 300;
+}
+
+.span {
+  font-family: "Lexend Deca", sans-serif;
+}
+
+.shadow {
+  -moz-box-shadow: inset 0 0 10px #27def2;
+  -webkit-box-shadow: inset 0 0 10px #27def2;
+  box-shadow: inset 0px 0px 10px #27def2;
+}
+
+.shadowMorbinTime {
+  animation-name: shadowWithin;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: cubic-bezier(0.17, 0.67, 0.66, 0.08);
+}
+
+@keyframes shadowWithin {
+  0% {
+    -moz-box-shadow: inset 0 0 10px #27def2;
+    -webkit-box-shadow: inset 0 0 10px #27def2;
+    box-shadow: inset 0px 0px 10px #27def2;
+  }
+  50% {
+    -moz-box-shadow: inset 0 0 10px #27def2;
+    -webkit-box-shadow: inset 0 0 10px #27def2;
+    box-shadow: inset 0px 0px 20px #27def2;
+  }
+  100% {
+    -moz-box-shadow: inset 0 0 10px #27def2;
+    -webkit-box-shadow: inset 0 0 10px #27def2;
+    box-shadow: inset 0px 0px 30px #27def2;
+  }
+}
