@@ -1,4 +1,5 @@
 import Post from "../models/Post.model.js";
+import User from "../models/User.model.js";
 import { postDataValidation } from "../validation/postDataValidation.js";
 import paginate from "express-paginate";
 import sanitize from "mongo-sanitize";
@@ -83,4 +84,58 @@ const getPostsBySearch = async (req, res) => {
   }
 };
 
-export { createPosts, getPosts, getPostsById, getPostsBySearch };
+const getPopularPosts = async (req, res) => {
+  const cleanQueryLimit = sanitize(req.query.limit);
+  const cleanSkip = sanitize(req.skip);
+
+  const [posts, itemCount] = await Promise.all([
+    Post.find({})
+      .limit(cleanQueryLimit)
+      .skip(cleanSkip)
+      .lean()
+      .sort({ likes: -1, createdAt: -1 }),
+    Post.count({}),
+  ]);
+
+  const pageCount = Math.ceil(itemCount / cleanQueryLimit);
+
+  if (!posts) {
+    res.status(404).json({ error: true, data: [] });
+  }
+  res.json({
+    error: false,
+    data: posts,
+    pageCount,
+    itemCount,
+    pages: paginate.getArrayPages(req)(3, pageCount, req.query.page),
+  });
+};
+
+const updateLikes = async (req, res) => {
+  const cleanUserId = sanitize(req.body.user_id);
+  const cleanPostId = sanitize(req.body.post_id);
+  const post = await Post.findById({ _id: cleanPostId });
+  const user = await User.findById({ _id: cleanUserId });
+  if (post.likes.includes(cleanUserId)) {
+    return res.json({
+      error: true,
+      message: "Post is already liked by this user",
+    });
+  }
+  // Pushing user_id into the likes array
+  post.likes.push(cleanUserId);
+  const savedPost = post.save();
+  return res.json({
+    error: false,
+    message: "Post has been liked by this user",
+  });
+};
+
+export {
+  createPosts,
+  getPosts,
+  getPostsById,
+  getPostsBySearch,
+  updateLikes,
+  getPopularPosts,
+};

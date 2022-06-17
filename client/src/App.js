@@ -8,15 +8,17 @@ import RequireAuth from "./components/ProtectedRoutes/RequireAuth";
 import DetailedFeed from "./components/DetailedFeed";
 import PersistLogin from "./components/PersistLogin";
 import Search from "./routes/Search";
+import Popular from "./routes/Popular";
 
 function App() {
   return (
     <div className="App">
       <Routes>
         {/* Public Routes */}
-        <Route path="/posts/:id" element={<DetailedFeed />} />
         <Route element={<PersistLogin />}>
+          <Route path="/posts/:id" element={<DetailedFeed />} />
           <Route path="/" element={<Home />} />
+          <Route path="/popular" element={<Popular />} />
           <Route path="/search" element={<Search />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />

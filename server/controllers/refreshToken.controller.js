@@ -56,9 +56,14 @@ const getRefreshToken = async (req, res) => {
       const accessToken = jwt.sign(
         { _id: user._id },
         process.env.ACCESS_TOKEN_SECRET,
-        { expiresIn: "900s" }
+        { expiresIn: "1h" }
       );
-      res.json({ error: false, token: accessToken, username: user.username });
+      res.json({
+        error: false,
+        token: accessToken,
+        username: user.username,
+        id: user._id,
+      });
     }
   );
 };

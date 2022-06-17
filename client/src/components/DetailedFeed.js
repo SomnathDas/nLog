@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "../api/axios";
 import Loading from "./Loading";
-import useAuth from "../hooks/useAuth";
+import LikeButton from "./LikeButton";
 
 const DetailedFeed = () => {
   const params = useParams();
@@ -10,8 +10,6 @@ const DetailedFeed = () => {
   const [post, setPost] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setError] = useState(false);
-
-  const { auth } = useAuth();
 
   const [firstLetter, setFirstLetter] = useState();
 
@@ -60,12 +58,7 @@ const DetailedFeed = () => {
               <p className={`text-dark-gray`}>on {post.createdAt}</p>
             </div>
             <div>
-              <button
-                className={`text-black bg-primary md:text-lg text-sm pt-2 pb-2 pl-6 pr-6 rounded-sm active:bg-black active:text-primary flex gap-2 items-center justify-center`}
-              >
-                <i className={`material-symbols-rounded`}>favorite</i>
-                Like
-              </button>
+              <LikeButton post={post} postId={postId} />
             </div>
           </div>
 

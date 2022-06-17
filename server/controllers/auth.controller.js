@@ -59,7 +59,6 @@ const postRegister = async (req, res) => {
 };
 
 const postLogin = async (req, res) => {
-  const cleanUsername = sanitize(req.body.username);
   const cleanEmail = sanitize(req.body.email);
   const cleanPassword = sanitize(req.body.password);
 
@@ -90,12 +89,12 @@ const postLogin = async (req, res) => {
   const accessToken = jwt.sign(
     { _id: user._id.toString() },
     process.env.ACCESS_TOKEN_SECRET,
-    { expiresIn: "900s" }
+    { expiresIn: "1h" }
   );
   const newRefreshToken = jwt.sign(
     { _id: user._id.toString() },
     process.env.REFRESH_TOKEN_SECRET,
-    { expiresIn: "180s" }
+    { expiresIn: "1h" }
   );
 
   let newRefreshTokenArray = !cookies?.jwt
@@ -128,7 +127,12 @@ const postLogin = async (req, res) => {
     sameSite: "None",
     maxAge: 24 * 60 * 60 * 1000,
   });
-  res.json({ error: false, token: accessToken, username: user.username });
+  res.json({
+    error: false,
+    token: accessToken,
+    username: user.username,
+    id: user._id,
+  });
 };
 
 const postLogout = async (req, res) => {

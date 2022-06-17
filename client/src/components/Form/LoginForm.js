@@ -45,7 +45,8 @@ const LoginForm = () => {
       );
       const accessToken = response?.data?.token;
       const username = response?.data?.username;
-      setAuth({ accessToken, username });
+      const id = response?.data?.id;
+      setAuth({ accessToken, username, id });
       setEmail("");
       setPassword("");
       setIsSuccess(true);

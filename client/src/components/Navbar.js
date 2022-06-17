@@ -39,6 +39,11 @@ const Navbar = () => {
           </div>
 
           <NavBtn title={"search"} icon_name={"search"} link={"/search"} />
+          <NavBtn
+            title={"popular"}
+            icon_name={"auto_awesome"}
+            link={"/popular"}
+          />
         </li>
         {auth.accessToken ? (
           <>
