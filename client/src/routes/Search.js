@@ -43,12 +43,13 @@ const Search = () => {
         <input
           type="search"
           value={searchText}
+          placeholder={"Enter keywords to search"}
           onChange={handleSearchText}
           className={`bg-dark-black text-white pt-2 pb-2 pl-12 pr-12 w-full border-1 border-primary text-2xl`}
         />
       </div>
       {posts.length === 0 ? (
-        <h2 className={`text-rose-600 text-2xl`}>No Result Found</h2>
+        <h2 className={`text-gray-500 text-2xl`}>No Result Found</h2>
       ) : (
         ""
       )}
@@ -68,6 +69,7 @@ const Search = () => {
                 username={elem.username || elem.user_id}
                 tags={elem.tags}
                 content={elem.content}
+                likes={elem.likes}
               />
             );
           })}
