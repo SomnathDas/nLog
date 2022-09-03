@@ -23,7 +23,7 @@
     "express-rate-limit": "^6.4.0",
     "jsonwebtoken": "^8.5.1",
     "mongo-sanitize": "^1.1.0",
-    "mongoose": "^6.3.4",
+    "mongoose": "^6.4.6",
     "morgan": "^1.10.0"
   }
 }
